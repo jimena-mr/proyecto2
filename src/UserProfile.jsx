@@ -1,26 +1,62 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 import './App.css';
-import { Box,Text, Heading,Card,CardBody,CardHeader,StackDivider,Stack,HStack,  Table,Thead,Tbody,Tr,Th,
-    Td,TableCaption,TableContainer, Avatar,AvatarGroup, Flex,   Editable, EditableInput, EditableTextarea, 
-    EditablePreview, } from '@chakra-ui/react';
+import { Box,Text, Heading,Card,CardBody,CardHeader,StackDivider,Stack, Table,Thead,Tbody,Tr,Th,
+    Td,TableCaption,TableContainer, Avatar,AvatarGroup, Flex,   Editable, EditableInput, EditablePreview, Grid,GridItem } from '@chakra-ui/react';
 
 
-const UserProfile = ({user}) => {
-    /*const {   
-        nombres,
-        apellidos,
-        fechaNacimiento,
-        carrera,
-        universidad,
-        ciclo,
-        correo,
-        sexo,
-      } = user;
-      */
-     
+
+const UserProfile = ({user}) => {     
+  /*
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  function usernameHandler(event) {
+    console.log(event.target.value);
+    setUsername(event.target.value);
+  }
+
+  const passwordHandler = (event) => {
+    setPassword(event.target.value);
+  };
+  */
+
+  /*
+  const [nombreA, setNombreA] = useState('');
+  const [codigoA, setCodigoA] = useState('');
+
+  function nombreAHandler (event) {
+    console.log(event.target.value);
+    setNombreA(event.target.value);
+  } 
+
+  useEffect(() => {
+    async function getCursosA() {
+      const response = await fetch('http://127.0.0.1:5000/cursos_a', {
+        method: 'GET',
+      });
+      const json = await response.json();
+      setPlayers(json);
+    }
+    return () => {
+      getCursosA();
+    };
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setCursosA((prevCursosA) => [...prevCursosA, newCursoA]);
+    setNewPlayer({ codigo: '', nombre: ''});
+  };
+
+  */
+
+
+
     return (
         // Perfil de Usuario 
-    <HStack>
+  <Grid   h='600px' templateRows='repeat(2, 1fr)' templateColumns='repeat(4, 1fr)' gap={4}>
+    
+    <GridItem rowSpan={2} colSpan={1}>
     <Card>
     <CardHeader>
       <Heading size='md'>Perfil de Usuario</Heading>
@@ -78,7 +114,9 @@ const UserProfile = ({user}) => {
       </Stack>
     </CardBody>
   </Card>
+  </GridItem>
 
+  <GridItem rowSpan={2} colSpan={1}>
   <Card>
   <CardHeader>
       <Heading size='md'> Perfil de Usuario </Heading>
@@ -131,7 +169,9 @@ const UserProfile = ({user}) => {
         </Stack>
     </CardBody>
     </Card>
+  </GridItem>
 
+  <GridItem rowSpan={2} colSpan={2}>
     <TableContainer>
   <Table variant='simple' color="black" bg="white">
     <TableCaption>Cursos disponibles</TableCaption>
@@ -143,33 +183,28 @@ const UserProfile = ({user}) => {
     </Thead>
     <Tbody>
       <Tr>
-        <Td>Curso 1</Td>
-        <Td>CCurso1</Td>
+        <Td>
+        <label>
+        Nombre:
+        <input type="text"  />
+        </label>
+        </Td>
+        <Td>
+        <label>
+        Nombre:
+        <input type="text" />
+        </label>
+        </Td>
       </Tr>
-      <Tr>
-        <Td>Curso2</Td>
-        <Td>CCurso2</Td>
-      </Tr>
-      <Tr>
-        <Td>Curso3</Td>
-        <Td>CCurso3</Td>
-      </Tr>
-      <Tr>
-        <Td>Curso4</Td>
-        <Td>CCurso4</Td>
-      </Tr>
-      <Tr>
-        <Td>Curso5</Td>
-        <Td>CCurso5</Td>
-      </Tr>
+      
     </Tbody>
   </Table>
 </TableContainer>
+</GridItem>
 
 
 
-
-  </HStack>
+  </Grid>
 
 
 

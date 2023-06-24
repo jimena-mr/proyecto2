@@ -1,5 +1,5 @@
 import './App.css';
-import {useState} from 'react';
+import React from 'react';
 import Login from "./Login";
 import Home from "./Home";
 import SignUp from "./SignUp";
@@ -8,15 +8,6 @@ import { Route,BrowserRouter as Router,Routes } from 'react-router-dom';
 
 
 function App() {
-  const [username,setUsername]= useState("");
-  const [password,setPassword]= useState("");
-  function usernameHandler(event){
-    console.log(event.target.value)
-    setUsername(event.target.value) 
-  }
-  function passwordHandler(event){
-    setPassword(event.target.value)
-  }
   return (
     <div className="App">
 
