@@ -1,32 +1,53 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css';
-//import { useState } from 'react';
 import { HStack,Flex,Center,Input,FormControl,Button,Box,Radio,RadioGroup,FormLabel  } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
 const SignUp = () => {
-/*    const [formData, setFormData] = useState({
-        name: '',
-        lastname: '',
-        age: '',
-        major: '',
-        university: '',
-        email: '',
-        password: '',
-    });
 
-    const onSubmit = (data) => {
-    console.log(data);
+const [alumnos, setAlumnos] = useState([]);
+const [newAlumno, setNewAlumno] = useState({
+    nombres: '',
+    apellidos: '',
+    fnacimiento: '',
+    carrera: '',
+    universidad: '',
+    ciclo: 0,
+    correo: '',
+    password: '',
+    sexo: '',
+});
+
+  useEffect(() => {
+    async function getAlumnos() {
+      const response = await fetch('http://127.0.0.1:5000/alumnos', {
+        method: 'GET',
+      });
+      const json = await response.json();
+      setAlumnos(json);
     }
+    return () => {
+      getAlumnos();
+    };
+  }, []);
 
-    //const handleSubmit = (e) => {
-    //e.preventDefault();
-    //console.log('Formulario Enviado!');
-    //}
-*/
+  const handleInputChange = (event) => {
+    setNewAlumno((prevAlumno) => ({
+      ...prevAlumno,
+      [event.target.name]: event.target.value,
+    }));
+  };
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setAlumnos((prevAlumnos) => [...prevAlumnos, newAlumno]);
+    setNewAlumno({ nombres: '', apellidos: '', fnacimiento: '', carrera: '', universidad: '', ciclo: 0, correo: '', password: '', sexo: ''});
+  };
+
   return (   // onSubmit={handleSubmit()}>
         
-    <Box h="100vh">
+    <Box h="100vh"  onSubmit={handleSubmit}>
         <div className="button-container">
             <Link to="/">
                 <Button colorScheme='teal'>VOLVER A INICIO</Button>
@@ -42,52 +63,52 @@ const SignUp = () => {
             <HStack spacing="4">
               <Box w="100%">
                 <FormLabel htmlFor="nombre">Nombres</FormLabel>
-                <Input id="nombre" />
+                <Input id="nombre" value={newAlumno.nombres} onChange={handleInputChange} />
               </Box>
               <Box w="100%">
                 <FormLabel htmlFor="apellido">Apellidos</FormLabel>
-                <Input id="apellido" type="text" />
+                <Input id="apellido" type="text" value={newAlumno.apellidos} onChange={handleInputChange} />
               </Box>
             </HStack>
             <HStack spacing="4">
               <Box w="100%">
                 <FormLabel htmlFor="nasc">Fecha de Nacimiento</FormLabel>
-                <Input id="nasc" type="date" />
+                <Input id="nasc" type="date" value={newAlumno.fnacimiento} onChange={handleInputChange} />
               </Box>
               <Box w="100%">
                 <FormLabel htmlFor="carrera">Carrera</FormLabel>
-                <Input id="carrera" />
+                <Input id="carrera" value={newAlumno.carrera} onChange={handleInputChange}  />
               </Box>
             </HStack>
             <HStack spacing="4">
               <Box w="100%">
                 <FormLabel htmlFor="uni">Universidad</FormLabel>
-                <Input id="universidad" type="text" />
+                <Input id="universidad" type="text" value={newAlumno.universidad} onChange={handleInputChange}  />
               </Box>
               <Box w="100%">
                 <FormLabel htmlFor="ciclo">Ciclo</FormLabel>
-                <Input id="ciclo" type="number"/>
+                <Input id="ciclo" type="number" value={newAlumno.ciclo} onChange={handleInputChange} />
               </Box>
             </HStack>
             <HStack spacing="4">
               <Box w="100%">
                 <FormLabel htmlFor="email">Correo</FormLabel>
-                <Input id="correo" type="email"/>
+                <Input id="correo" type="email" value={newAlumno.correo} onChange={handleInputChange} />
               </Box>
               <Box w="100%">
                 <FormLabel htmlFor="contra">Contraseña</FormLabel>
-                <Input id="password" type="password"/>
+                <Input id="password" type="password" value={newAlumno.password} onChange={handleInputChange} />
               </Box>
             </HStack>
             <HStack spacing="4">
               <Box w="100%">
                 <FormLabel>Sexo</FormLabel>
-                <RadioGroup defaultValue="Masculino">
+                <RadioGroup value={newAlumno.sexo} onChange={handleInputChange}>
                   <HStack spacing="24px">
                     <Radio value="Masculino">Masculino</Radio>
                     <Radio value="Femenino">Femenino</Radio>
                   </HStack>
-                </RadioGroup>
+                </RadioGroup>     
               </Box>
             </HStack>
             <HStack justify="center">

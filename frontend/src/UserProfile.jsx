@@ -5,40 +5,50 @@ import { Box,Text, Heading,Card,CardBody,CardHeader,StackDivider,Stack, Table,Th
 
 
 
-const UserProfile = ({user}) => {
-    //const {   nombres,apellidos,fechaNacimiento, carrera,universidad,ciclo,correo,sexo,} = user;   
-      
-  /*const [codigoA,setcodigoA]= useState("");
-    const [nombreA,setnombreA]= useState("");
-  function codigoHandler(event){
-    console.log(event.target.value)
-    setcodigo(event.target.value) 
+const UserProfile = ({user}) => {     
+  /*
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  function usernameHandler(event) {
+    console.log(event.target.value);
+    setUsername(event.target.value);
   }
-  function nombreHandler(event){
-    setnombre(event.target.value)
-  }*/
 
-  const [data, setdata] = useState({
-    codigo: "",
-    nombre: "",
-  });
+  const passwordHandler = (event) => {
+    setPassword(event.target.value);
+  };
+  */
 
-// Using useEffect for single rendering
-useEffect(() => {
-    // Using fetch to fetch the api from
-    // flask server it will be redirected to proxy
-    fetch("/cursos_a").then((res) =>
-    res.json().then((data) => {
-      // Setting a data from api
-      setdata({
-        codigo: data.codigo,
-        nombre: data.nombre,
-        // Aquí puedes agregar más propiedades si las necesitas
+  /*
+  const [nombreA, setNombreA] = useState('');
+  const [codigoA, setCodigoA] = useState('');
+
+  function nombreAHandler (event) {
+    console.log(event.target.value);
+    setNombreA(event.target.value);
+  } 
+
+  useEffect(() => {
+    async function getCursosA() {
+      const response = await fetch('http://127.0.0.1:5000/cursos_a', {
+        method: 'GET',
       });
-    })
-  );
-}, []);
+      const json = await response.json();
+      setPlayers(json);
+    }
+    return () => {
+      getCursosA();
+    };
+  }, []);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setCursosA((prevCursosA) => [...prevCursosA, newCursoA]);
+    setNewPlayer({ codigo: '', nombre: ''});
+  };
+
+  */
 
 
 
@@ -174,94 +184,19 @@ useEffect(() => {
     <Tbody>
       <Tr>
         <Td>
-        <Text pt='2' fontSize='lg'>
-          <Editable defaultValue='Curso1'>
-            <EditablePreview />
-            <EditableInput />
-          </Editable>
-          </Text>
+        <label>
+        Nombre:
+        <input type="text"  />
+        </label>
         </Td>
         <Td>
-        <Text pt='2' fontSize='lg'>
-          <Editable defaultValue='CCurso1'>
-            <EditablePreview />
-            <EditableInput />
-          </Editable>
-          </Text>
+        <label>
+        Nombre:
+        <input type="text" />
+        </label>
         </Td>
       </Tr>
-      <Tr>
-        <Td>
-        <Text pt='2' fontSize='lg'>
-          <Editable defaultValue='Curso2'>
-            <EditablePreview />
-            <EditableInput />
-          </Editable>
-          </Text>
-        </Td>
-        <Td>
-        <Text pt='2' fontSize='lg'>
-          <Editable defaultValue='CCurso2'>
-            <EditablePreview />
-            <EditableInput />
-          </Editable>
-          </Text>
-        </Td>
-      </Tr>
-      <Tr>
-        <Td>
-        <Text pt='2' fontSize='lg'>
-          <Editable defaultValue='Curso3'>
-            <EditablePreview />
-            <EditableInput />
-          </Editable>
-          </Text>
-        </Td>
-        <Td>
-        <Text pt='2' fontSize='lg'>
-          <Editable defaultValue='CCurso3'>
-            <EditablePreview />
-            <EditableInput />
-          </Editable>
-          </Text>
-        </Td>
-      </Tr>
-      <Tr>
-        <Td>
-        <Text pt='2' fontSize='lg'>
-          <Editable defaultValue='Curso4'>
-            <EditablePreview />
-            <EditableInput />
-          </Editable>
-          </Text>
-        </Td>
-        <Td>
-        <Text pt='2' fontSize='lg'>
-          <Editable defaultValue='CCurso4'>
-            <EditablePreview />
-            <EditableInput />
-          </Editable>
-          </Text>
-        </Td>
-      </Tr>
-      <Tr>
-        <Td>
-        <Text pt='2' fontSize='lg'>
-          <Editable defaultValue='Curso5'>
-            <EditablePreview />
-            <EditableInput />
-          </Editable>
-          </Text>   
-        </Td>
-        <Td>
-        <Text pt='2' fontSize='lg'>
-          <Editable defaultValue='CCurso5'>
-            <EditablePreview />
-            <EditableInput />
-          </Editable>
-          </Text>
-        </Td>
-      </Tr>
+      
     </Tbody>
   </Table>
 </TableContainer>
